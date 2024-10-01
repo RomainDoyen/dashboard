@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:700,600" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
-  <title>Login</title>
+  <title>Espace de connexion</title>
 </head>
 <body>
   <div class="box">
     <div class="card">
-      <h4 class="title">Log In!</h4>
-      <form method="post" action="">
+      <h4 class="title">Espace de connexion</h4>
+      <form method="post" action="{{ route('handleLogin') }}">
         @csrf
         @method('POST')
         <label class="field" for="logemail">
@@ -38,13 +38,18 @@
 
           <input
             id="password"
-            placeholder="Password"
+            placeholder="Mot de passe"
             class="input-field"
             name="password"
             type="password"
           />
         </label>
-        <button class="btn" type="submit">Login</button>
+        <button class="btn" type="submit">Connexion</button>
+        @if (Session::get('error_msg'))
+          <div class="alert alert-danger">
+            {{ Session::get('error_msg') }}
+          </div>
+        @endif
       </form>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AppController;
@@ -10,4 +11,9 @@ Route::post('/', [AuthController::class, 'handleLogin'])->name('handleLogin');
 // Route sécurisé
 Route::middleware('auth')->group(function() {
   Route::get('/dashboard', [AppController::class, 'index'])->name('dashboard');
+  Route::prefix('employers')->group(function() {
+    Route::get('/', [EmployerController::class, 'index'])->name('employer.index');
+    Route::get('/create', [EmployerController::class, 'create'])->name('employer.create');
+    Route::post('/edit/{employer}', [EmployerController::class, 'edit'])->name('employer.edit');
+  });
 });

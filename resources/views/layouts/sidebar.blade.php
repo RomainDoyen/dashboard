@@ -64,8 +64,8 @@
 							</a><!--//nav-link-->
 							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 								<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link" href="notifications.html">Liste</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="account.html">Ajout</a></li>
+									<li class="submenu-item"><a class="submenu-link" href="{{route('employer.index')}}">Liste</a></li>
+									<li class="submenu-item"><a class="submenu-link" href="{{route('employer.create')}}">Ajout</a></li>
 								</ul>
 							</div>
 						</li><!--//nav-item-->

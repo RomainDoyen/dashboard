@@ -8,4 +8,6 @@ Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'handleLogin'])->name('handleLogin');
 
 // Route sécurisé
-Route::get('/dashboard', [AppController::class, 'index'])->name('dashboard');
+Route::middleware('auth')->group(function() {
+  Route::get('/dashboard', [AppController::class, 'index'])->name('dashboard');
+});

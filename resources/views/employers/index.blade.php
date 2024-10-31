@@ -84,7 +84,6 @@
                   <td class="cell">{{$employer->prenom}}</td>
                   <td class="cell">{{$employer->email}}</td>
                   <td class="cell">{{$employer->contact}}</td>
-                  <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('employers.show', $employer->id)}}">View</a></td>
                 </tr>
               @empty
                 <tr>

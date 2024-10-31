@@ -3,7 +3,7 @@
 @section('content')
 <div class="row g-3 mb-4 align-items-center justify-content-between">
   <div class="col-auto">
-    <h1 class="app-page-title mb-0">Orders</h1>
+    <h1 class="app-page-title mb-0">Employers</h1>
   </div>
   <div class="col-auto">
     <div class="page-utilities">
@@ -21,16 +21,6 @@
 
         </div><!--//col-->
         <div class="col-auto">
-
-          <select class="form-select w-auto">
-            <option selected value="option-1"></option>
-            <option value="option-2">This week</option>
-            <option value="option-3">This month</option>
-            <option value="option-4">Last 3 months</option>
-
-          </select>
-        </div>
-        <div class="col-auto">
           <a class="btn app-btn-secondary" href="{{route('employer.create')}}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor"
               xmlns="http://www.w3.org/2000/svg">
@@ -47,18 +37,9 @@
   </div><!--//col-auto-->
 </div><!--//row-->
 
-
-<nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-  <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all"
-    role="tab" aria-controls="orders-all" aria-selected="true">Tous les employers</a>
-  <a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid"
-    role="tab" aria-controls="orders-paid" aria-selected="false">Paid</a>
-  <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending"
-    role="tab" aria-controls="orders-pending" aria-selected="false">Pending</a>
-  <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab"
-    href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Cancelled</a>
-</nav>
-
+@if (session('success_message'))
+  <div class="alert alert-success">{{ Session::get('success_message') }}</div>
+@endif
 
 <div class="tab-content" id="orders-table-tab-content">
   <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
@@ -69,10 +50,12 @@
             <thead>
               <tr>
                 <th class="cell">#</th>
+                <th class="cell">Département</th>
                 <th class="cell">Nom</th>
                 <th class="cell">Prénom</th>
                 <th class="cell">Email</th>
                 <th class="cell">Contact</th>
+                <th class="cell">Salaire</th>
                 <th class="cell"></th>
               </tr>
             </thead>
@@ -80,10 +63,12 @@
               @forelse($employers as $employer)
                 <tr>
                   <td class="cell">{{$employer->id}}</td>
-                  <td class="cell">{{$employer->nom}}</td>
+                  <td class="cell">{{$employer->departement}}</td>
+                  <td class="cell">{{$employer->name}}</td>
                   <td class="cell">{{$employer->prenom}}</td>
                   <td class="cell">{{$employer->email}}</td>
                   <td class="cell">{{$employer->contact}}</td>
+                  <td class="cell">{{$employer->montant_journalier * 31}} €</td>
                 </tr>
               @empty
                 <tr>
@@ -97,17 +82,7 @@
       </div><!--//app-card-body-->
     </div><!--//app-card-->
     <nav class="app-pagination">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
+      {{$employers->links()}}
     </nav><!--//app-pagination-->
 
   </div><!--//tab-pane-->

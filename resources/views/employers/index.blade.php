@@ -63,7 +63,7 @@
               @forelse($employers as $employer)
                 <tr>
                   <td class="cell">{{$employer->id}}</td>
-                  <td class="cell">{{$employer->departement}}</td>
+                  <td class="cell">{{$employer->departement->name}}</td>
                   <td class="cell">{{$employer->name}}</td>
                   <td class="cell">{{$employer->prenom}}</td>
                   <td class="cell">{{$employer->email}}</td>

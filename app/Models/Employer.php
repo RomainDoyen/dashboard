@@ -9,4 +9,13 @@ class Employer extends Model
 {
     use HasFactory;
     protected $guarded = [''];
+
+    /**
+     * Get the departement that owns the Employer
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function departement() {
+        return $this->belongsTo(Departement::class);
+    }
 }

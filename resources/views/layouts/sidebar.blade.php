@@ -3,8 +3,22 @@
 			<div class="sidepanel-inner d-flex flex-column">
 				<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 				<div class="app-branding">
-					<a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg"
-							alt="logo"><span class="logo-text">PORTAL</span></a>
+					<a class="app-logo" href="{{route('dashboard')}}">
+						<img 
+							src="https://ui-avatars.com/api/?name={{
+								AppNameGetter::getAppName() ? 
+								AppNameGetter::getAppName() : 'App Name'
+							}}" 
+							alt="Logo de l'application" 
+							style="border-radius: 50%"
+						>
+						<span class="logo-text">
+							{{
+								AppNameGetter::getAppName() ? 
+								AppNameGetter::getAppName() : 'App Name'
+							}}
+						</span>
+					</a>
 
 				</div><!--//app-branding-->
 

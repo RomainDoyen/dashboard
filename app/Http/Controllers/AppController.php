@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuration;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use App\Models\Departement;
@@ -13,6 +14,9 @@ class AppController extends Controller
         $totalDepartements = Departement::all()->count();
         $totalEmployers = Employer::all()->count();
         $totalAdmins = User::all()->count();
+
+        $appName = Configuration::where("type", "APP_NAME")->first();
+
         return view('dashboard', compact('totalDepartements', 'totalEmployers', 'totalAdmins'));
     }
 }

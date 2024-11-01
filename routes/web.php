@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\EmployerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -29,5 +30,12 @@ Route::middleware('auth')->group(function() {
     Route::get('/edit/{departement}', [DepartementController::class, 'edit'])->name('departement.edit');
     Route::put('/update/{departement}', [DepartementController::class, 'update'])->name('departement.update');
     Route::get('/delete/{departement}', [DepartementController::class, 'delete'])->name('departement.delete');
+  });
+
+  Route::prefix('configurations')->group(function() {
+    Route::get('/', [ConfigurationController::class, 'index'])->name('configurations');
+    Route::get('/create', [ConfigurationController::class, 'create'])->name('configurations.create');
+    Route::post('/store', [ConfigurationController::class, 'store'])->name('configurations.store');
+    Route::get('/delete/{configuration}', [ConfigurationController::class, 'delete'])->name('configurations.delete');
   });
 });
